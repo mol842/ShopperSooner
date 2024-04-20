@@ -1,7 +1,7 @@
 import os
 import requests
 
-DISCORD_WEBHOOK_URL = "***REMOVED***W"
+DISCORD_WEBHOOK_URL = "***REMOVED***"
 
 
 def sendDiscordAlert(messageStr):
@@ -14,5 +14,4 @@ def formatJobAlert(jobTuplesList):
         message += "[{}](https://www.shoppernow.com.au/Shopper/JobDetail.aspx?JobID={})".format(job[0], job[1])
         message += " - {}".format(job[2])
         message += "\n"
-    message += "Have a good day!!"
     return message
