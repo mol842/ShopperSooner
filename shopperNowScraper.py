@@ -6,7 +6,8 @@ from selenium.webdriver.chrome.options import Options
 from discordAlert import sendDiscordAlert, formatJobAlert
 
 
-def scrapeNewJobs(displayUI, keywords, username, password):
+
+def scrapeNewJobs(displayUI, keywords, username, password, sentJobs):
     chrome_options = Options()
     if not displayUI:
         chrome_options.add_argument("--headless=new")
@@ -53,13 +54,16 @@ def scrapeNewJobs(displayUI, keywords, username, password):
     for job in jobInfo:
         print(job)
         if any(word in job[0] for word in keywords):
-            importantJobs.append(job)
+            if job not in sentJobs:
+                sentJobs.append(job)
+                importantJobs.append(job)
 
     if len(importantJobs) > 0:
         alert = formatJobAlert(importantJobs)
         sendDiscordAlert(alert)
-
+    
     print("done")
+    return sentJobs
 
 
 
