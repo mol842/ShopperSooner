@@ -1,12 +1,14 @@
 import os
 import requests
+import config
 
-DISCORD_WEBHOOK_URL = "***REMOVED***"
+# import from config file
+# DISCORD_WEBHOOK_URL = "***REMOVED***" 
 
 
 def sendDiscordAlert(messageStr):
     payload = {'content': messageStr}
-    response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
+    response = requests.post(config.DISCORD_WEBHOOK_URL, json=payload)
 
 def formatJobAlert(jobTuplesList):
     message = "Alert! I found some jobs you may be interested in:\n"

@@ -1,2 +1,4 @@
 chromedriver/
 __pycache__/
+config.py
+replacements.txt
