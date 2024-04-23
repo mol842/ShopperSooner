@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
 from discordAlert import sendDiscordAlert, formatJobAlert
-
+test = False # prints instead of sending alert
 
 
 def scrapeNewJobs(displayUI, keywords, username, password, sentJobs):
@@ -60,7 +60,10 @@ def scrapeNewJobs(displayUI, keywords, username, password, sentJobs):
 
     if len(importantJobs) > 0:
         alert = formatJobAlert(importantJobs)
-        sendDiscordAlert(alert)
+        if test:
+            print(alert)
+        else:
+            sendDiscordAlert(alert)
     
     print("done")
     return sentJobs

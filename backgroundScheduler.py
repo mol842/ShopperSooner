@@ -3,21 +3,28 @@ from shopperNowScraper import scrapeNewJobs
 import config
 import pickle
 
-
-# added Northland just for testing, modify as needed
-DISPLAYUI = True
-MAXCYCLES = 100
-SLEEPTIME = 1000 # 3 mins idk
-
-KEYWORDS = ["Woolworths", "Dan", "Murphys", "Online", "Uber", "UberVCExpress", "Delivery", "Optus", "BWS"]
-LOGFILE = "log.pk"
-
-
 ## import from config file
 #USERNAME = "***REMOVED***"
 #PASSWORD = "***REMOVED***"
 
+DISPLAYUI = True
+MAXCYCLES = 100
+SLEEPTIME = 1000 # 3 mins idk
+
+# added Northland just for testing, modify as needed
+KEYWORDS = ["Woolworths", "Dan", "Murphys", "Online", "Uber", "UberVCExpress", "Delivery", "Optus", "BWS"]
+LOGFILE = "log.pk"
+
+
 sentJobs = []
+try:
+   with open("aaaa", 'rb') as file:
+      sentJobs = pickle.load(file)
+except FileNotFoundError:
+   sentJobs = []
+   # wow! molly actually doing error handling?
+
+print(sentJobs)
 
 i = 0
 while i < MAXCYCLES:
