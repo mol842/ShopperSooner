@@ -7,12 +7,13 @@ import pickle
 #USERNAME = "***REMOVED***"
 #PASSWORD = "***REMOVED***"
 
-DISPLAYUI = True
-MAXCYCLES = 100
+DISPLAYUI = False
+MAXCYCLES = 1000
 SLEEPTIME = 1000 # 3 mins idk
 
 # added Northland just for testing, modify as needed
 KEYWORDS = ["Woolworths", "Dan", "Murphys", "Online", "Uber", "UberVCExpress", "Delivery", "Optus", "BWS"]
+EXCLUDE = ["Grill'd"]
 LOGFILE = "log.pk"
 
 
@@ -28,7 +29,7 @@ print(sentJobs)
 
 i = 0
 while i < MAXCYCLES:
-   sentJobs = scrapeNewJobs(DISPLAYUI, KEYWORDS, config.USERNAME, config.PASSWORD, sentJobs)
+   sentJobs = scrapeNewJobs(DISPLAYUI, KEYWORDS, EXCLUDE, config.USERNAME, config.PASSWORD, sentJobs)
 
    i+=1
    print("Cycle: " + str(i))

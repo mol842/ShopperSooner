@@ -7,7 +7,7 @@ from discordAlert import sendDiscordAlert, formatJobAlert
 test = False # prints instead of sending alert
 
 
-def scrapeNewJobs(displayUI, keywords, username, password, sentJobs):
+def scrapeNewJobs(displayUI, keywords, exclude, username, password, sentJobs):
     chrome_options = Options()
     if not displayUI:
         chrome_options.add_argument("--headless=new")
@@ -53,7 +53,8 @@ def scrapeNewJobs(displayUI, keywords, username, password, sentJobs):
     importantJobs = []
     for job in jobInfo:
         print(job)
-        if any(word in job[0] for word in keywords):
+        if (any(word in job[0] for word in keywords) and 
+            not any(word in job[0] for word in exclude)):
             if job not in sentJobs:
                 sentJobs.append(job)
                 importantJobs.append(job)
